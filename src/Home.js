@@ -1,19 +1,22 @@
+import { useState } from "react";
 const Home = () => {
-  let like = 0;
-  const handleClick = (e) => {
-    console.log("Halo", e);
+  const [like, setLike] = useState(1);
+  const [dislike, setDislike] = useState(1);
+  const handleClick = () => {
+    setLike(like + 1);
   };
-  const handleClicklagi = (name, e) => {
-    console.log("Halo", name);
-    console.log(e);
+  const handleDislike = () => {
+    setDislike(dislike + 1);
   };
 
   return (
     <div className="home">
       <h3>Contact List</h3>
-      <h3>like = 0</h3>
+      <h3>
+        like : {like}, Dislike : {dislike}
+      </h3>
       <button onClick={handleClick}>Like</button>
-      <button onClick={(e) => handleClicklagi("rayhan", e)}>Hai</button>
+      <button onClick={handleDislike}>Dislike</button>
     </div>
   );
 };
