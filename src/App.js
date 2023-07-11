@@ -1,26 +1,20 @@
-import './App.css';
+import Navbar from "./Navbar";
+import Home from "./Home";
+import Create from "./create";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Nakama = (props) => {
-  console.log(props);
-  return(
-    <div classname="nakama">
-      <p>my name is {props.name}</p>
-      <p>my power is{props.power}</p>
-    </div>
-  )
-  }
 function App() {
-  const greetings = 'Hello Nakama';
   return (
-    <div classname="App">
-     <h1>{greetings}</h1>
-     <Nakama name="luffy" power="Gatling"/>
-     <Nakama name="zoro" power="santoryu"/>
-
+    <div className="App">
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create" element={<Create />} />
+        </Routes>
+      </BrowserRouter>
     </div>
-  ); 
-  
-  
+  );
 }
 
 export default App;
