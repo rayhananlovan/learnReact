@@ -1,37 +1,40 @@
 import { useEffect, useState } from "react";
 import ContactList from "./ContactList";
+import Api from "./api/contact-api";
 const Home = () => {
-  const [contacts, setContacts] = useState([
-    { id: 1, name: "Messi", number: "085627871665" },
-    { id: 2, name: "Murdik", number: "081627779835" },
-    { id: 3, name: "Cucur", number: "087633899273" },
-  ]);
+  const [contacts, setContacts] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleDelete = (id) => {
     const filteredContacts = contacts.filter((contact) => contact.id !== id);
     setContacts(filteredContacts);
   };
 
-  const [nakama, setNakama] = useState("Robin");
-
-  console.log("Component is rendered");
-
   useEffect(() => {
-    console.log("useEffect1 is called");
-  }, [contacts]);
-  useEffect(() => {
-    console.log("useEffect2 is called");
-  }, [nakama]);
+    Api.get("/contacts")
+      .then((res) => {
+        setContacts(res.data);
+      })
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <div className="home">
-      <ContactList
-        contacts={contacts}
-        title="All Contact"
-        onDelete={handleDelete}
-      />
-      <button onClick={() => setNakama("Frank")}>Update nakama</button>
-      <h5>{nakama}</h5>
+      {loading && <div>loading...</div>}
+      {error && <div>{error}</div>}
+      {contacts && (
+        <ContactList
+          contacts={contacts}
+          title="All Contact"
+          onDelete={handleDelete}
+        />
+      )}
     </div>
   );
 };

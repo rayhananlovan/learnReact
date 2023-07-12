@@ -1,5 +1,5 @@
 import axios from "axios";
 
-export default Axios.create({
-  baseURL: "http://localhost:3002/contacts",
+export default axios.create({
+  baseURL: "http://localhost:3002",
 });
