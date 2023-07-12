@@ -6,11 +6,6 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const handleDelete = (id) => {
-    const filteredContacts = contacts.filter((contact) => contact.id !== id);
-    setContacts(filteredContacts);
-  };
-
   useEffect(() => {
     Api.get("/contacts")
       .then((res) => {
