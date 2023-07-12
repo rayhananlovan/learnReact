@@ -6,7 +6,7 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchContact = () => {
     Api.get("/contacts")
       .then((res) => {
         setContacts(res.data);
@@ -17,6 +17,10 @@ const Home = () => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchContact();
   }, []);
 
   return (
@@ -27,7 +31,7 @@ const Home = () => {
         <ContactList
           contacts={contacts}
           title="All Contact"
-          onDelete={handleDelete}
+          onDelete={fetchContact}
         />
       )}
     </div>

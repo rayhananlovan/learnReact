@@ -1,7 +1,9 @@
 import Api from "./api/contact-api";
 const ContactList = ({ contacts, title, onDelete }) => {
   const handleDeleteContact = (id) => {
-    Api.delete("/contacts/" + id).then(() => {});
+    Api.delete("/contacts/" + id).then(() => {
+      onDelete();
+    });
   };
 
   return (
