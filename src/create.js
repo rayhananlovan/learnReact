@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Api from "./api/contact-api";
 const Create = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -6,7 +7,9 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const contact = { name, number };
-    console.log(contact);
+    Api.post("/person", contact).then((response) => {
+      console.log(response);
+    });
   };
   return (
     <div className="contact-form">
