@@ -16,22 +16,17 @@
       "number": "085528899274"
     },
     {
-      "id": 3,
-      "name": "Harves2",
-      "number": "085528899274"
-    },
-    {
-      "name": "wqd332",
-      "number": "32",
+      "name": "Baim",
+      "number": "08746137664",
       "id": 4
     },
     {
-      "name": "dfdf",
-      "number": "3434",
+      "name": "Rayhan",
+      "number": "085601994175",
       "id": 5
     }
   ],
-  "person": [
+  "contact": [
     {
       "id": 1,
       "name": "Ronaldo",
@@ -48,24 +43,9 @@
       "number": "085528899274"
     },
     {
-      "id": 3,
-      "name": "Harves2",
-      "number": "085528899274"
-    },
-    {
-      "name": "wqd332",
-      "number": "32",
+      "name": "Rayhan",
+      "number": "085601994175",
       "id": 4
-    },
-    {
-      "name": "dfdf",
-      "number": "3434",
-      "id": 5
-    },
-    {
-      "name": "sdsd",
-      "number": "232",
-      "id": 6
     }
   ]
 }
