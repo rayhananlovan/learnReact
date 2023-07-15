@@ -1,11 +1,6 @@
 {
   "contacts": [
     {
-      "id": 3,
-      "name": "Harves",
-      "number": "085528899274"
-    },
-    {
       "name": "Devano",
       "number": "085641376455",
       "id": 6
@@ -17,13 +12,8 @@
     },
     {
       "name": "Baim",
-      "number": "08567328847",
+      "number": "222",
       "id": 8
-    },
-    {
-      "name": "Harvest",
-      "number": "666",
-      "id": 9
     }
   ],
   "contact": [
