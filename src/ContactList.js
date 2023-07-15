@@ -1,4 +1,5 @@
 import Api from "./api/contact-api";
+import { Link } from "react-router-dom";
 const ContactList = ({ contacts, title, onDelete }) => {
   const handleDeleteContact = (id) => {
     Api.delete("/contacts/" + id).then(() => {
@@ -15,7 +16,10 @@ const ContactList = ({ contacts, title, onDelete }) => {
             <p>{contact.number} </p>
           </div>
           <div className="contact-actions">
-            <button className="button-primary">Edit</button>
+            <Link to={"/edit/" + contact.id}>
+              <button className="button-primary">Edit</button>
+            </Link>
+
             <button
               onClick={() => handleDeleteContact(contact.id)}
               className="button-danger"

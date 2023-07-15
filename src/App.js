@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/edit/:id" Component={Create} />
         </Routes>
       </BrowserRouter>
     </div>
