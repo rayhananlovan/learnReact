@@ -1,25 +1,50 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Api from "./api/contact-api";
 const Create = () => {
-  const History = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (id) {
+      Api.get("/contacts/" + id).then((response) => {
+        const { data } = response;
+        setName(data.name);
+        setNumber(data.number);
+      });
+    }
+  }, [id]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const contact = { name, number };
-    setLoading(true);
 
+    setLoading(true);
+    if (id) {
+      updateContact(contact);
+    } else {
+      createContact(contact);
+    }
+  };
+
+  const createContact = (contact) => {
     Api.post("/contacts", contact).then(() => {
       setLoading(false);
-      History(-1);
+      navigate(-1);
+    });
+  };
+  const updateContact = (contact) => {
+    Api.put("/contacts/" + id, contact).then(() => {
+      setLoading(false);
+      navigate(-1);
     });
   };
   return (
     <div className="contact-form">
-      Contact Form
+      {id ? "Update" : "Add"} Contact
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="control-label">Contact Name</label>
@@ -43,7 +68,7 @@ const Create = () => {
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => History(-1)}
+            onClick={() => navigate(-1)}
           >
             Cancel
           </button>
