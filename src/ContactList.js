@@ -1,4 +1,10 @@
+import Api from "./api/contact-api";
 const ContactList = ({ contacts, title, onDelete }) => {
+  const handleDeleteContact = (id) => {
+    Api.delete("/contacts/" + id).then(() => {
+      onDelete();
+    });
+  };
   return (
     <div className="contact-list">
       <h3>{title}</h3>
@@ -11,7 +17,7 @@ const ContactList = ({ contacts, title, onDelete }) => {
           <div className="contact-actions">
             <button className="button-primary">Edit</button>
             <button
-              onClick={() => onDelete(contact.id)}
+              onClick={() => handleDeleteContact(contact.id)}
               className="button-danger"
             >
               Delete

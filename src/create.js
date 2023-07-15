@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Api from "./api/contact-api";
 const Create = () => {
+  const History = useNavigate();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const contact = { name, number };
-    Api.post("/person", contact).then((response) => {
-      console.log(response);
+    setLoading(true);
+
+    Api.post("/contacts", contact).then(() => {
+      setLoading(false);
+      History(-1);
     });
   };
   return (
@@ -34,11 +40,15 @@ const Create = () => {
           />
         </div>
         <div className="btn-group">
-          <button type="button" className="btn btn-danger">
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => History(-1)}
+          >
             Cancel
           </button>
           <button type="Submit" className="btn btn-primary">
-            Submit
+            {loading ? "submitting" : "submit"}
           </button>
         </div>
       </form>
